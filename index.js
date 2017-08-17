@@ -6,6 +6,8 @@ var cheerio = require('cheerio');
 
 // exports.parse = function () {
 
+var color_red = "\x1b[31m";
+var color_green = "\x1b[32m";
 
 var parsedData = {};
 
@@ -38,7 +40,7 @@ request({
                     numeric_3_code: numeric_3_code,
                     subdivisions: {}
                 };
-                console.log(".........", english_short_name, alpha_2_code, alpha_3_code, numeric_3_code)
+                // console.log(".........", english_short_name, alpha_2_code, alpha_3_code, numeric_3_code)
             }
             //Si isIndependent tenemos que parsear la ISO 3166-2
             if ("Yes" == isIndependent) {
@@ -51,7 +53,7 @@ request({
                         var $ = cheerio.load(body);
                         // Parseamos todas las tablas que están antes de la seccion current codes
                         var num_tables = $("table.wikitable.sortable").length;
-
+                        console.info(color_green, "https://en.wikipedia.org" + link + " - Tables: " + num_tables);
                         for (i = 0; i < num_tables; i++) {
                             // Tabla i
                             $("table.wikitable.sortable").eq(i).find('tbody tr').each(function () {
@@ -68,19 +70,19 @@ request({
                                         alpha_3_code: null,
                                         numeric_3_code: code,
                                     }
-                                    console.log("-.-.-.", subdivision_name, code);
+                                    // console.log("-.-.-.", subdivision_name, code);
                                 }
 
                             })
                         }
                     } else {
-
+                        console.error(color_red, "Error: ", response.statusCode);
                     }
                 });
             }
         })
     } else {
-
+        console.error(color_red, "Error: ", response.statusCode);
     }
 })
 
