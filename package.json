@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/RaquelDiazG/isoCodes_3166-1_3166-2/issues"
   },
-  "homepage": "https://github.com/RaquelDiazG/isoCodes_3166-1_3166-2#readme"
+  "homepage": "https://github.com/RaquelDiazG/isoCodes_3166-1_3166-2#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.81.0"
+  }
 }
