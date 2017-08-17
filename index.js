@@ -1,6 +1,4 @@
 
-var lodash = require('lodash');
-
 var request = require("request");
 
 var cheerio = require('cheerio');
@@ -42,7 +40,44 @@ request({
                 };
                 console.log(".........", english_short_name, alpha_2_code, alpha_3_code, numeric_3_code)
             }
-            
+            //Si isIndependent tenemos que parsear la ISO 3166-2
+            if ("Yes" == isIndependent) {
+                //Parseamos la ISO 3166-2
+                request({
+                    url: "https://en.wikipedia.org" + link,
+                    json: true
+                }, function (error, response, body) {
+                    if (!error && response.statusCode === 200) {
+                        var $ = cheerio.load(body);
+                        // Parseamos todas las tablas que están antes de la seccion current codes
+                        var num_tables = $("table.wikitable.sortable").length;
+
+                        for (i = 0; i < num_tables; i++) {
+                            // Tabla i
+                            $("table.wikitable.sortable").eq(i).find('tbody tr').each(function () {
+                                // Para cada fila
+                                var $td = $(this).find('td');
+                                var code = $td.eq(0).find('span').first().text();
+                                var subdivision_name = $td.eq(1).find('a').first().text();
+                                //Añadimos la ISO 3166-2 a las subdivisions de la ISO 3166-1
+                                if (subdivision_name && subdivision_name != "" &&
+                                    code && code != "") {
+                                    parsedData[alpha_2_code].subdivisions[code] = {
+                                        english_short_name: subdivision_name,
+                                        alpha_2_code: null,
+                                        alpha_3_code: null,
+                                        numeric_3_code: code,
+                                    }
+                                    console.log("-.-.-.", subdivision_name, code);
+                                }
+
+                            })
+                        }
+                    } else {
+
+                    }
+                });
+            }
         })
     } else {
 
