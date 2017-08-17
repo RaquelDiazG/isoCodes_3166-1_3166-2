@@ -3,6 +3,7 @@ var request = require("request");
 
 var cheerio = require('cheerio');
 
+var fs = require("fs");
 
 // exports.parse = function () {
 
@@ -72,7 +73,7 @@ request({
                                     }
                                     // console.log("-.-.-.", subdivision_name, code);
                                 }
-
+                                fs.writeFileSync("data.json", JSON.stringify(parsedData, null, 2));
                             })
                         }
                     } else {
