@@ -1,0 +1,26 @@
+{
+  "name": "isocodes_3166-1_3166-2",
+  "version": "1.0.0",
+  "description": "Wikipedia parser to obtain all current codes from ISO 3166-1 and ISO 3166-2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaquelDiazG/isoCodes_3166-1_3166-2.git"
+  },
+  "keywords": [
+    "iso",
+    "codes",
+    "3166",
+    "3166-1",
+    "3166-2"
+  ],
+  "author": "Raquel Díaz González",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaquelDiazG/isoCodes_3166-1_3166-2/issues"
+  },
+  "homepage": "https://github.com/RaquelDiazG/isoCodes_3166-1_3166-2#readme"
+}
