@@ -5,10 +5,9 @@ var cheerio = require('cheerio');
 
 var fs = require("fs");
 
-// exports.parse = function () {
+const chalk = require('chalk');
 
-var color_red = "\x1b[31m";
-var color_green = "\x1b[32m";
+// exports.parse = function () {
 
 var parsedData = {};
 
@@ -18,6 +17,9 @@ request({
     json: true
 }, function (error, response, body) {
     if (!error && response.statusCode === 200) {
+
+        console.log(chalk.yellow("https://en.wikipedia.org/wiki/ISO_3166-1"));
+
         var $ = cheerio.load(body);
         //Segunda tabla
         $('.wikitable').eq(1).find('tbody tr').each(function (obj, index) {
@@ -54,7 +56,7 @@ request({
                         var $ = cheerio.load(body);
                         // Parseamos todas las tablas que están antes de la seccion current codes
                         var num_tables = $("table.wikitable.sortable").length;
-                        console.info(color_green, "https://en.wikipedia.org" + link + " - Tables: " + num_tables);
+                        console.log(chalk.green("https://en.wikipedia.org" + link + " - Tables: " + num_tables));
                         for (i = 0; i < num_tables; i++) {
                             // Tabla i
                             $("table.wikitable.sortable").eq(i).find('tbody tr').each(function () {
@@ -77,13 +79,13 @@ request({
                             })
                         }
                     } else {
-                        console.error(color_red, "Error: ", response.statusCode);
+                        console.log(chalk.red("Error: " + response.statusCode));
                     }
                 });
             }
         })
     } else {
-        console.error(color_red, "Error: ", response.statusCode);
+        console.log(chalk.red("Error: " + response.statusCode));
     }
 })
 
