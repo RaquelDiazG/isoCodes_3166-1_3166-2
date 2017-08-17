@@ -1,4 +1,4 @@
-# isoCodes 3166-1 and 3166-2
+# ISO 3166-1 and ISO 3166-2 codes
 Wikipedia scraper to obtain all current codes from ISO 3166-1 and ISO 3166-2
 
 # Working
