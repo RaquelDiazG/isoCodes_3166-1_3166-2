@@ -1,5 +1,5 @@
 # ISO 3166-1 and ISO 3166-2 codes
-Wikipedia scraper to obtain all current codes from ISO 3166-1 and ISO 3166-2
+Wikipedia scraper to obtain a list in JSON format with all current codes from ISO 3166-1 and ISO 3166-2
 
 # Working
 First, it parse the "current codes" section of ISO 3166-1 from wikipedia URL. (Countries)
